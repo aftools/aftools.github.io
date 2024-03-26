@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>test api</title>
+
+    <script>
+        // Define the API URL
+        const apiUrl = 'https://api.bag.acceptatie.kadaster.nl/lvbag/individuelebevragingen/v2/adressen?postcode=6678db';
+	   const apiKey = 'l7be0c560875794320a741d4c2f650a74a'
+        // Make a GET request
+        fetch(apiUrl, {
+            mode: "cors", // no-cors, *cors, same-origin
+            cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+            headers: {
+                "Content-Type": "text/plain",
+			"X-API-KEY": "l7be0c560875794320a741d4c2f650a74a",
+            }
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
