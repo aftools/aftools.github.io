@@ -7,15 +7,18 @@
 
     <script>
         // Define the API URL
-        const apiUrl = 'https://api.bag.kadaster.nl/lvbag/individuelebevragingen/v2/adressen?postcode=6678DB&huisnummer=32&exacteMatch=false&page=1&pageSize=20&inclusiefEindStatus=false';
-	const apiKey = 'l7740753dd8d494c9e8b0ebe1a181c40b9'
+        const bag_apiUrl = 'https://api.bag.kadaster.nl/lvbag/individuelebevragingen/v2/adressen?postcode=6678DB&huisnummer=32&exacteMatch=false&page=1&pageSize=20&inclusiefEindStatus=false';
+	const bag_apiKey = 'l7740753dd8d494c9e8b0ebe1a181c40b9';
+	const ean_apiUrl = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJzZWFyY2htZXRlcmluZ3BvaW50cGJkLnByZC5lZHNuLm5sIiwibWFpbCI6ImpnLmFsaW5rLmJkQGdtYWlsLmNvbSIsIm1haWxvcHRpbiI6dHJ1ZX0.P0MDb-Hjg6kZsI14ji3IFJoMPhTIWUD-JlwuAPEBi1o';
+	const ean_apiKey = 'https://gateway.edsn.nl/eancodeboek/v1/ecbinfoset?product=ELK&streetNumber=32&postalCode=6678DB&limit=10&offset=0';
         // Make a GET request
-        fetch(apiUrl, {
+	function lees_BAG_adressen() {
+        fetch(ean_apiUrl, {
             mode: "cors", // no-cors, *cors, same-origin
             cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
             headers: {
                 "accept": "application/hal+json",
-			"X-API-KEY": apiKey,
+		"X-API-KEY": ean_apiKey,
             }
         })
             .then(response => {
@@ -26,15 +29,32 @@
             })
             .then(data => {
                 console.log(data);
+		// ToDo: data naar HTML
             })
             .catch(error => {
                 console.error('Error:', error);
+		// ToDo: error melding naar HTML
             });
+	}
+	lees_BAG_adressen();    
     </script>
 </head>
 
 <body>
 
+
+	<form>
+
+<label for="bag_key">BAG Api Key:</label>
+<input type="text" id="bag_key" name="bag_key" size="50"><br>
+<label for="ean_key">EAN Api Key:</label>
+<input type="text" id="ean_key" name="ean_key" size="50"><br><br>		
+<label for="pc">Postcode:</label><br>
+<input type="text" id="pc" name="pc" size="6" pattern="[0-9]{4}[A-Z]{2} placeholder="1234AB" title="Nederlandste postcode in de vorm 1234AB" ><br>
+<label for="hnr">Huisnummer:</label><br>
+<input type="number" id="hnr" name="hnr" size="6" pattern="[0-9]{6} placeholder="12" title="Huisnummer, alleen maar cijfers, bijvoorbeeld 99">
+<input type="button" value="Zoek BAG en EAN">	
+</form>
 </body>
 
 </html>
