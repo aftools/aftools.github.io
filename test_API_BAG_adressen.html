@@ -7,10 +7,10 @@
 
     <script>
         // Define the API URL
-        const bag_apiUrl = 'https://api.bag.kadaster.nl/lvbag/individuelebevragingen/v2/adressen?postcode=6678DB&huisnummer=32&exacteMatch=false&page=1&pageSize=20&inclusiefEindStatus=false';
-	const bag_apiKey = 'l7740753dd8d494c9e8b0ebe1a181c40b9';
-	const ean_apiUrl = 'https://gateway.edsn.nl/eancodeboek/v1/ecbinfoset?product=ELK&streetNumber=32&postalCode=6678DB&limit=10&offset=0';
-  	const ean_apiKey = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJzZWFyY2htZXRlcmluZ3BvaW50cGJkLnByZC5lZHNuLm5sIiwibWFpbCI6ImpnLmFsaW5rLmJkQGdtYWlsLmNvbSIsIm1haWxvcHRpbiI6dHJ1ZX0.P0MDb-Hjg6kZsI14ji3IFJoMPhTIWUD-JlwuAPEBi1o';
+        const bag_apiUrl = 'https://api.bag.kadaster.nl/lvbag/individuelebevragingen/v2/adressen?postcode=*pc*&huisnummer=*hnr*&exacteMatch=false&page=1&pageSize=20&inclusiefEindStatus=false';
+	const bag_apiKey = '*geheim*';
+	const ean_apiUrl = 'https://gateway.edsn.nl/eancodeboek/v1/ecbinfoset?product=ELK&streetNumber=*hnr*&postalCode=*pc*&limit=10&offset=0';
+  	const ean_apiKey = '*geheim*';
 	     // Make a GET request
 	function lees_BAG_adressen() {
         fetch(ean_apiUrl, {
